@@ -1,0 +1,8 @@
+{
+  "$schema": "https://json.schemastore.org/web-manifest-combined.json",
+  "name": "Graph Editor",
+  "short_name": "grapheditor",
+  "start_url": ".",
+  "display": "browser",
+  "description": "An application to create, edit Graph and find the shortest path between 2 vertices"
+}
