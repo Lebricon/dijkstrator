@@ -8,6 +8,8 @@ class EdgeArrow extends React.Component {
     this.state = {
       start: props.start,
       end: props.end,
+      color: props.color,
+      stroke: props.stroke,
 
       shapePoints: [
         {x:0, y:0},
@@ -73,8 +75,9 @@ class EdgeArrow extends React.Component {
         className='edgeArrow vertexDrop vertexDrag'
         vertex-id={this.props.id} 
         d={ this.pathString() } 
-        fill="#25ff9a" 
+        fill={ this.state.color } 
         style={ this.pathStyles() }
+        stroke={ this.state.stroke === true ? "#992713" : "" }
       ></path>
     );
   }

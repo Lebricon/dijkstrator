@@ -32,10 +32,6 @@ code {
   user-select: none;
 }
 
-.vertex {
-  
-}
-
 .vertexText {
   font-weight: bold;
   paint-order: stroke;
@@ -79,15 +75,15 @@ code {
 }
 
 .weight-input input, .weight-input label, .weight-input fieldset {
-  color: #ffd756;
-  border-color: #ffd756;
+  color: #bfff84;
+  border-color: #bfff84;
 }
 .weight-input label.Mui-focused, .weight-input .Mui-focused input, .weight-input div.Mui-focused, .weight-input .Mui-focused fieldset {
-  color: #db8e1b!important;
-  border-color: #db8e1b!important;
+  color: #67f031!important;
+  border-color: #579c15!important;
 }
 
 .dijkstra-input .Mui-Select-select, label.dijkstra-label, .dijkstra-input fieldset {
-  color: #569fff;
+  color: #9bc7ff;
   border-color: #569fff;
 }

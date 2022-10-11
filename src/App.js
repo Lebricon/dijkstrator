@@ -1,5 +1,4 @@
 import React from 'react'
-import Button from '@mui/material/Button'
 import Grid from '@mui/material/Grid'
 import { ThemeProvider, createTheme } from '@mui/material/styles'
 import CssBaseline from '@mui/material/CssBaseline'
@@ -12,13 +11,18 @@ import DataVerticesList from './Graph/Data/DataVerticesList'
 import SvgLegend from './Graph/Render/SvgLegend'
 import DataFormDijkstra from './Graph/Data/DataFormDijkstra'
 import DijkstraService from './Graph/Service/DijkstraService'
+import DataControls from './Graph/Data/DataControls'
 
 /**
  * Darkmode theme + overriding scrollbars
  */
+const { palette } = createTheme();
+const { augmentColor } = palette;
+const createColor = (mainColor) => augmentColor({ color: { main: mainColor } });
 const darkTheme = createTheme({
   palette: {
     mode: 'dark',
+    lightBlue: createColor('#9bc7ff'),
   },
   components: {
     MuiCssBaseline: {
@@ -89,15 +93,27 @@ class App extends React.Component {
         vertices: [],
       }],
       dragCount: this.state.dragCount+1,
+      linksCount: this.state.linksCount+1,
       linking: null,
       draggedTarget: null,
       draggedCoordX: null,
       draggedCoordY: null,
-      dragCount: 0,
-      linksCount: 0,
       shortestPath: [],
       valueSelectStart:'',
       valueSelectEnd:'',
+    });
+  }
+
+  /**
+   * Reset all graphs & vertices
+   */
+  resetDijkstra = () => {
+    this.setState({
+      shortestPath: [],
+      valueSelectStart:'',
+      valueSelectEnd:'',
+      linksCount: this.state.linksCount+1,
+      dragCount: this.state.dragCount+1,
     });
   }
 
@@ -267,7 +283,7 @@ class App extends React.Component {
   handleMouseUp = (event) => {
     if(this.dragging === false && this.linking === false){
       this.addVertex(event)
-    } else if(this.dragging === true) {
+    } else if(this.dragging === true && this.state.draggedTarget!==null ) {
       if(event.target.className.baseVal.match(/\bvertexDrop\b/) !== null){
         this.connectVertices(
           this.state.draggedTarget.getAttribute('vertex-id'),
@@ -334,6 +350,10 @@ class App extends React.Component {
       this.setState({
         graphs: updatedGraps, 
         dragCount: this.state.dragCount+1,
+        shortestPath: [],
+        linksCount: this.state.linksCount+1,
+        valueSelectStart:'',
+        valueSelectEnd:'',
       });
     }
   , 500);
@@ -413,6 +433,7 @@ class App extends React.Component {
           <Grid className='graphDataWrapper' item height={1} xs={4}>
             <Box sx={{ height: 1, p: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between', alignItems: 'center', boxShadow:2 }}>
               <DataHeader />
+
               <DataVerticesList 
                 key={ 'data-content-' + this.state.dragCount} 
                 dragCount={this.state.dragCount} 
@@ -427,7 +448,7 @@ class App extends React.Component {
                 handleChangeEnd={this.handleChangeEndDijkstra}
               />
 
-              <Button sx={{ alignSelf: 'center', m: 1 }} variant="outlined" color="error" onClick={ this.resetVertices }>Reset</Button>
+              <DataControls resetDijkstra={ this.resetDijkstra } resetVertices={ this.resetVertices } />
             </Box>
           </Grid>
 

@@ -1,4 +1,5 @@
 import React from 'react';
+import EdgeArrow from './EdgeArrow';
 
 class ShortestPathEdges extends React.Component  {
 
@@ -65,6 +66,13 @@ class ShortestPathEdges extends React.Component  {
             <path d={ this.pathString(previousVertex, vertex) } strokeWidth={3} stroke="#ff694f"></path>
             <circle cx={ pathWeightPosition.x } cy={ pathWeightPosition.y } r={10} fill="#ff694f" stroke="#ff694f" strokeWidth={2}/>
             { this.renderWeight(vertex, pathWeightPosition) }
+            <EdgeArrow 
+              key={'edge-arrow-' + vertex.id + this.state.dragCount}
+              start={previousVertex} 
+              end={vertex} 
+              color="#ff694f"
+              stroke={true}
+            />
           </g>
         )
       }

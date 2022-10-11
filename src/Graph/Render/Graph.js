@@ -70,6 +70,7 @@ class Graph extends React.Component  {
                   id={ this.state.vertices.indexOf(adjacentVertex.vertex) } 
                   start={vertex} 
                   end={adjacentVertex.vertex} 
+                  color="#25ff9a"
                 />
               )
             )

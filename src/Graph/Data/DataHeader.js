@@ -1,6 +1,6 @@
 import React from 'react';
 import { Paper, Stack, Box } from '@mui/material'
-import HubIcon from '@mui/icons-material/Hub';
+import DeviceHubSharpIcon from '@mui/icons-material/DeviceHubSharp';
 
 class DataHeader extends React.Component {
   constructor(props) {
@@ -14,10 +14,11 @@ class DataHeader extends React.Component {
   render() {
     return (
       <Paper sx={{ width: 1, p: 2 }} elevation={3}>
-        <Stack direction="row" alignItems="center" spacing={1} justifyContent="center">
-          <HubIcon />
-          <Box>GRAPH DATAS</Box>
+        <Stack sx={{ marginBottom:2 }} direction="row" alignItems="center" spacing={1} justifyContent="center">
+          <DeviceHubSharpIcon />
+          <Box>DijkstraTor</Box>
         </Stack>
+        <Box sx={{ fontSize:'smaller', textAlign:'center', color:'#9bc7ff' }}>Directed & Weighted graph editor to compute and display Dijkstra algorithm results</Box>
       </Paper>
     );
   }

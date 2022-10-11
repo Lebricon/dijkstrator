@@ -57,15 +57,16 @@ class DijkstraService {
           let distance = this.distances[currentVertex];
           let adjacentVertices = graph.vertices[currentVertex].adjacentVertices;
           
-          adjacentVertices.forEach( (adjacentVertex) => {
-  
+          for (let i=0; i<adjacentVertices.length; i++) {
+            let adjacentVertex = adjacentVertices[i];
+
             let newDistance = distance + adjacentVertex.weight;
             if (this.distances[adjacentVertex.vertex.id] > newDistance) {
                 this.distances[adjacentVertex.vertex.id] = newDistance;
                 this.parents[adjacentVertex.vertex.id] = currentVertex;
                 this.weights[adjacentVertex.vertex.id] = adjacentVertex.weight;
             }
-          });
+          }
   
           this.visited.add(currentVertex);
           currentVertex = this.findClosestVertex();

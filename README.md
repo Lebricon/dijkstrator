@@ -1,6 +1,6 @@
-# Getting Started with Create React App
+# DijkstraTor
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+DijkstraTor is a complete tool to create/edit directed/weighted graphs & compute Dijkstra algorithm to find the shortest path between 2 vertices.
 
 ## Available Scripts
 
@@ -34,7 +34,8 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-## Learn More [AUTO Generated docs : We keep them because we are still LEARNING]
+
+## [ AUTO GENERATE DOC ] Learn More (Yes, we are learning)
 
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
