@@ -4,5 +4,5 @@
   "short_name": "dijkstraTor",
   "start_url": ".",
   "display": "browser",
-  "description": "An application to create, edit Graph and find the shortest path between 2 vertices"
+  "description": "Directed & Weighted graph editor to compute and display Dijkstra algorithm results"
 }

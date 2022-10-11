@@ -20,10 +20,8 @@ class Edge extends React.Component {
   }
 
   pathWeightPosition = () => {
-    
     let halfDeltaTextX = Math.abs(this.state.start.posX - this.state.end.posX)/2;
     let halfDeltaTextY = Math.abs(this.state.start.posY - this.state.end.posY)/2;
-
     let textPostionMinX = Math.min(this.state.start.posX, this.state.end.posX);
     let textPostionMinY = Math.min(this.state.start.posY, this.state.end.posY);
 

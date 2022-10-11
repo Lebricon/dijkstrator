@@ -17,7 +17,6 @@ class DataVertex extends React.Component {
   render() {
     return (
       <Paper sx={{ width: 1, p: 2, m:1 }} elevation={2}>
-
         <Stack direction="row" alignItems="center" spacing={1} justifyContent="left">
           <AdjustIcon sx={{ color:'#25bcff' }} />
           <Box width="100%">
@@ -30,7 +29,6 @@ class DataVertex extends React.Component {
         </Stack>
 
         <Grid container marginTop={2} w={1}>
-
           <Grid item xs={4}>
             <Stack direction="row" alignItems="center" spacing={1} justifyContent="left" marginTop={1} w={1}>
               <RouteIcon sx={{ color:'#25ff9a' }} />
@@ -60,9 +58,7 @@ class DataVertex extends React.Component {
               ))}
             </Box>
           </Grid>
-
         </Grid>
-
       </Paper>
     );
   }

@@ -10,6 +10,7 @@ class EdgeArrow extends React.Component {
       end: props.end,
       color: props.color,
       stroke: props.stroke,
+      strokeLocation: props.strokeLocation,
 
       shapePoints: [
         {x:0, y:0},
@@ -77,7 +78,8 @@ class EdgeArrow extends React.Component {
         d={ this.pathString() } 
         fill={ this.state.color } 
         style={ this.pathStyles() }
-        stroke={ this.state.stroke === true ? "#992713" : "" }
+        stroke={ this.state.stroke }
+        strokeLocation={ this.state.strokeLocation }
       ></path>
     );
   }

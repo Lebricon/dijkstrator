@@ -5,21 +5,13 @@ import TimelineIcon from '@mui/icons-material/Timeline';
 import MultipleStopIcon from '@mui/icons-material/MultipleStop';
 
 class SvgLegend extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-
-    };
-  }
-
   render() {
     return (
       <Box className="legendBloc">
         <Stack direction="row" alignItems="center" spacing={1} justifyContent="left" m={1}>
           <MouseIcon fontSize='small' />
           <Box>
-            Click to add vertex
+            Click to add a vertex
           </Box>
         </Stack>
         <Stack direction="row" alignItems="center" spacing={1} justifyContent="left" m={1}>

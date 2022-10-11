@@ -71,6 +71,8 @@ class Graph extends React.Component  {
                   start={vertex} 
                   end={adjacentVertex.vertex} 
                   color="#25ff9a"
+                  stroke="#019751"
+                  strokeLocation="inside"
                 />
               )
             )

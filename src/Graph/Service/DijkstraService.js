@@ -1,4 +1,3 @@
-
 /**
  * Dijkstra Algorith service, find the shortest path
  */
@@ -42,6 +41,8 @@ class DijkstraService {
   /**
    * Compute Dijkstra shortest path algorithm
    * @param {*} graph 
+   * @param {*} startVertex 
+   * @param {*} endVertex 
    */
   compute = (graph, startVertex, endVertex) => {
 

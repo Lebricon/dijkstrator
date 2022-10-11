@@ -71,7 +71,8 @@ class ShortestPathEdges extends React.Component  {
               start={previousVertex} 
               end={vertex} 
               color="#ff694f"
-              stroke={true}
+              stroke="#992713"
+              strokeLocation="outside"
             />
           </g>
         )

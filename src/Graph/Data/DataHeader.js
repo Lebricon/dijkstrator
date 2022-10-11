@@ -3,14 +3,6 @@ import { Paper, Stack, Box } from '@mui/material'
 import DeviceHubSharpIcon from '@mui/icons-material/DeviceHubSharp';
 
 class DataHeader extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-
-    };
-  }
-
   render() {
     return (
       <Paper sx={{ width: 1, p: 2 }} elevation={3}>

@@ -25,13 +25,23 @@ class SvgBoard extends React.Component  {
       let offsetY = this.state.draggedTarget.cy.baseVal.value > this.state.draggedCoordY ? 1 : -1
 
       return (
-        <path d={ 
-          'M' + this.state.draggedTarget.cx.baseVal.value + ' ' + this.state.draggedTarget.cy.baseVal.value +
-          ' L' + (this.state.draggedCoordX + offsetX) + ' ' + (this.state.draggedCoordY + offsetY)
-          }
-          strokeWidth={2}
-          stroke="#FFF"
-        />
+        <g>
+          <path d={ 
+            'M' + this.state.draggedTarget.cx.baseVal.value + ' ' + this.state.draggedTarget.cy.baseVal.value +
+            ' L' + (this.state.draggedCoordX + offsetX) + ' ' + (this.state.draggedCoordY + offsetY)
+            }
+            strokeWidth={2}
+            stroke="#FFF"
+          />
+          <circle 
+            fillOpacity={1} 
+            stroke="#FFFFFF" 
+            strokeWidth="1" 
+            cx={ this.state.draggedTarget.cx.baseVal.value } 
+            cy={ this.state.draggedTarget.cy.baseVal.value } 
+            r={ 3 } 
+          />
+        </g>
       )
     }
   }
@@ -50,7 +60,14 @@ class SvgBoard extends React.Component  {
           handleMouseMove={ (e) => { this.props.handleMouseMove(e) } }
           handleMouseUp={ (e) => { this.props.handleMouseUp(e) } }
         />
-        { this.state.graphs.map( (graph, index) => <Graph key={ 'graph-' + this.state.dragCount} shortestPath={ this.state.shortestPath } dragCount={this.state.dragCount} vertices={graph.vertices}/> ) }
+        { this.state.graphs.map( (graph) => 
+          <Graph 
+            key={ 'graph-' + this.state.dragCount} 
+            shortestPath={ this.state.shortestPath } 
+            dragCount={this.state.dragCount} 
+            vertices={graph.vertices}
+          /> 
+        )}
         { this.renderDragLine() }
       </svg>
     );
