@@ -53,6 +53,13 @@ code {
   fill:#25ff9a;
 }
 
+.weightTextDijkstra {
+  user-select: none;
+  font-size: 11px;
+  font-weight: bold;
+  fill:#ffffff;
+}
+
 .legendBloc {
   opacity: 0.85;
   position: absolute;
@@ -67,14 +74,6 @@ code {
   user-select: none;
 }
 
-.edgeArrow {
-  paint-order: stroke;
-  stroke: #005f33;
-  stroke-width: 1px;
-  stroke-linecap: butt;
-  stroke-linejoin: miter;
-}
-
 .edgeDatasPaper {
   width:100%;
 }
@@ -86,4 +85,9 @@ code {
 .weight-input label.Mui-focused, .weight-input .Mui-focused input, .weight-input div.Mui-focused, .weight-input .Mui-focused fieldset {
   color: #db8e1b!important;
   border-color: #db8e1b!important;
+}
+
+.dijkstra-input .Mui-Select-select, label.dijkstra-label, .dijkstra-input fieldset {
+  color: #569fff;
+  border-color: #569fff;
 }

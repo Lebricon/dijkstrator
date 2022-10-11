@@ -32,7 +32,7 @@ class DataVertex extends React.Component {
         <Grid container marginTop={2} w={1}>
 
           <Grid item xs={4}>
-            <Stack item direction="row" alignItems="center" spacing={1} justifyContent="left" marginTop={1} w={1}>
+            <Stack direction="row" alignItems="center" spacing={1} justifyContent="left" marginTop={1} w={1}>
               <RouteIcon sx={{ color:'#25ff9a' }} />
               <span  style={{ color:'#25ff9a', paddingLeft:'10px' }}>Adjacent vertices : </span>
             </Stack>
@@ -41,8 +41,8 @@ class DataVertex extends React.Component {
           <Grid item xs={8}>
             <Box sx={{ color:'#25ff9a' }}>
               { Object.entries(this.state.vertex.adjacentVertices).map(([index, adjacentVertex]) => (
-                  <Paper sx={{ width:'120px', display:'inline-block', margin:'2px' }}>
-                    <Stack key={index} direction="row" alignItems="center" spacing={1}  m={1}>
+                  <Paper key={index} sx={{ width:'120px', display:'inline-block', margin:'2px' }}>
+                    <Stack direction="row" alignItems="center" spacing={1}  m={1}>
                       <Chip label={ adjacentVertex.vertex.name } />
                       <TextField
                         key={ 'weight-input-' + index}

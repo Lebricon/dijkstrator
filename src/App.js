@@ -10,6 +10,8 @@ import SvgBoard from './Graph/Render/SvgBoard'
 import DataHeader from './Graph/Data/DataHeader'
 import DataVerticesList from './Graph/Data/DataVerticesList'
 import SvgLegend from './Graph/Render/SvgLegend'
+import DataFormDijkstra from './Graph/Data/DataFormDijkstra'
+import DijkstraService from './Graph/Service/DijkstraService'
 
 /**
  * Darkmode theme + overriding scrollbars
@@ -70,6 +72,10 @@ class App extends React.Component {
       draggedCoordX: null,
       draggedCoordY: null,
       dragCount: 0,
+      linksCount: 0,
+      shortestPath: [],
+      valueSelectStart:'',
+      valueSelectEnd:'',
     };
   }
 
@@ -82,7 +88,16 @@ class App extends React.Component {
       graphs: [{
         vertices: [],
       }],
-      dragCount: this.state.dragCount+1
+      dragCount: this.state.dragCount+1,
+      linking: null,
+      draggedTarget: null,
+      draggedCoordX: null,
+      draggedCoordY: null,
+      dragCount: 0,
+      linksCount: 0,
+      shortestPath: [],
+      valueSelectStart:'',
+      valueSelectEnd:'',
     });
   }
 
@@ -151,6 +166,7 @@ class App extends React.Component {
       posY: event.clientY,
       name: currentVertex.name,
       id: currentVertex.id,
+      weight: currentVertex.weight,
     };
     
     // Update current vertex when it's in adjacent list of another one
@@ -161,7 +177,7 @@ class App extends React.Component {
       }
 
       let updatedAdjacentVertices = [];
-      vertex.adjacentVertices.forEach( (adjacentVertex, indexAdj) => {
+      vertex.adjacentVertices.forEach( (adjacentVertex) => {
         if(adjacentVertex.vertex.id === id){
           updatedAdjacentVertices.push({
             vertex:updatedVertex, 
@@ -172,8 +188,16 @@ class App extends React.Component {
         }
       });
       vertex.adjacentVertices = updatedAdjacentVertices;
-      
       updatedVertices.push(vertex);
+    });
+
+    let shortestPathVertices = [];
+    this.state.shortestPath.forEach( (shortestPathVertex) => {
+      if(shortestPathVertex.id === id){
+        shortestPathVertices.push(updatedVertex);
+      } else {
+        shortestPathVertices.push(shortestPathVertex);
+      }
     });
 
     graphs[0].vertices = updatedVertices;
@@ -181,6 +205,7 @@ class App extends React.Component {
     this.setState({
       graphs: graphs,
       dragCount: this.state.dragCount+1,
+      shortestPath: shortestPathVertices,
     })
   }
 
@@ -206,6 +231,8 @@ class App extends React.Component {
   
       this.setState({
         graphs: graphs,
+        dragCount: this.state.dragCount+1,
+        linksCount: this.state.linksCount+1,
       })
     }
   }
@@ -287,7 +314,6 @@ class App extends React.Component {
         draggedTarget: target,
         draggedCoordX: event.clientX,
         draggedCoordY: event.clientY,
-        dragCount: this.state.dragCount+1,
       })
     }
   }
@@ -312,6 +338,51 @@ class App extends React.Component {
     }
   , 500);
 
+  findShortestPath = (startId, endId) => {
+    let dijkstraService = new DijkstraService();
+    let shortestPath = dijkstraService.compute(
+      this.state.graphs[0], 
+      this.state.graphs[0].vertices[startId],
+      this.state.graphs[0].vertices[endId]
+    );
+    this.setState({
+      shortestPath: shortestPath,
+      dragCount: this.state.dragCount+1,
+    })
+  }
+
+  handleChangeStartDijkstra = (event) => {
+    let values = {
+      startId: event.target.value,
+      endId: this.state.valueSelectEnd,
+    };
+
+    this.setState({
+      valueSelectStart: event.target.value,
+    })
+
+    this.findShortestPath(
+      values.startId,
+      values.endId
+    );
+  }
+
+  handleChangeEndDijkstra = (event) => {
+    let values = {
+      startId: this.state.valueSelectStart,
+      endId: event.target.value,
+    };
+
+    this.setState({
+      valueSelectEnd: event.target.value,
+    })
+
+    this.findShortestPath(
+      values.startId,
+      values.endId
+    );
+  }
+
   render() {
     return (
       <ThemeProvider theme={darkTheme}>
@@ -332,6 +403,7 @@ class App extends React.Component {
               draggedCoordX={this.state.draggedCoordX} 
               draggedCoordY={this.state.draggedCoordY} 
               dragCount={this.state.dragCount} 
+              shortestPath={this.state.shortestPath}
               handleMouseDown={ (e) => { this.handleMouseDown(e) } } 
               handleMouseMove={ (e) => { this.handleMouseMove(e) } } 
               handleMouseUp={ (e) => { this.handleMouseUp(e) } } 
@@ -346,6 +418,13 @@ class App extends React.Component {
                 dragCount={this.state.dragCount} 
                 graphs={ this.state.graphs }
                 handleWeightChange={this.handleWeightChange}
+              />
+              <DataFormDijkstra 
+                key={ 'data-form-dijkstra-' + this.state.linksCount} 
+                dragCount={this.state.linksCount} 
+                graphs={ this.state.graphs }
+                handleChangeStart={this.handleChangeStartDijkstra}
+                handleChangeEnd={this.handleChangeEndDijkstra}
               />
 
               <Button sx={{ alignSelf: 'center', m: 1 }} variant="outlined" color="error" onClick={ this.resetVertices }>Reset</Button>

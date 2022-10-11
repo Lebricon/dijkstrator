@@ -9,6 +9,7 @@ class Edge extends React.Component {
       start: props.start,
       end: props.end,
       weight: props.weight,
+      shortestPath: this.props.shortestPath,
     };
   }
 
@@ -30,7 +31,6 @@ class Edge extends React.Component {
       x:textPostionMinX + halfDeltaTextX,
       y:textPostionMinY + halfDeltaTextY
     };
-    
   }
 
   render() {
@@ -38,7 +38,7 @@ class Edge extends React.Component {
     let weightRadius = 14;
     return (
       <g> 
-        <path d={ this.pathString() } strokeWidth={3} stroke="#25ff9a" strokeLinecap='butt'></path>
+        <path d={ this.pathString() } strokeWidth={2} stroke="#25ff9a" strokeLinecap='butt'></path>
         <circle cx={ pathWeightPosition.x } cy={ pathWeightPosition.y } r={weightRadius} fill="#171717" stroke="#25ff9a" strokeWidth={2}/>
         <text 
           textAnchor='middle'
