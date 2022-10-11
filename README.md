@@ -1,6 +1,7 @@
 # DijkstraTor
 
-DijkstraTor is a complete tool to create/edit directed/weighted graphs & compute Dijkstra algorithm to find the shortest path between 2 vertices.
+**DijkstraTor** is a complete tool to create/edit directed/weighted graphs & compute Dijkstra algorithm to find the shortest path between 2 vertices.
+Graph is drawn using SVG & UI is using Material UI.<br>
 *Powered by [ReactJS](https://reactjs.org/) & [Material UI](https://mui.com/)*
 
 <img src="example_1.png" alt="example_1" width="400"/>
