@@ -2,6 +2,10 @@
 
 DijkstraTor is a complete tool to create/edit directed/weighted graphs & compute Dijkstra algorithm to find the shortest path between 2 vertices.
 
+<img src="example_1.png" alt="example_1" width="400"/>
+<br>
+<img src="example_2.png" alt="example_2" width="400"/>
+
 ## Available Scripts
 
 In the project directory, you can run:
